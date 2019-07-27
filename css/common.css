@@ -1,0 +1,334 @@
+@charset "UTF-8";
+/* reset, normalize
+---------------------------------------- */
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: bottom;
+  background: transparent;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+nav ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+a {
+  vertical-align: bottom;
+  background: transparent;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+input, select {
+  vertical-align: middle;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* font
+---------------------------------------- */
+html {
+  font-size: 625%;
+}
+
+body {
+  font-size: .15em;
+  font-family: "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "游ゴシック Medium", YuGothic, YuGothicM, "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", "sans-serif";
+  line-height: 1.5;
+  color: #333;
+}
+
+/* layout
+---------------------------------------- */
+#content, #aside, #main, #header, #footer {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#header {
+  background-color: #777;
+  padding: 20px 0;
+  margin-bottom: 40px;
+}
+
+#header-inr {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+#nav {
+  background-color: #f0f0f0;
+  margin-bottom: 20px;
+}
+
+#nav-inr {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+#content {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+#main {
+  width: 100%;
+}
+
+#footer {
+  width: 100%;
+  background-color: #f0f0f0;
+  padding: 20px 0;
+}
+
+#footer-inr {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+/* component
+---------------------------------------- */
+/* logo */
+#header-inr .logo {
+  font-size: 0.4rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* parts--title */
+.ttl-lv2 {
+  background-color: #efefef;
+  border-left: #ea947c 15px solid;
+  padding: 10px 20px;
+  margin: 0 0 20px;
+  font-size: 0.24rem;
+  font-weight: normal;
+}
+
+/* parts-input */
+input[type="text"] {
+  width: 300px;
+  padding: 10px 10px;
+  font-size: 0.18rem;
+  border: 1px solid #777;
+}
+
+/* parts-btn */
+.btn {
+  display: inline-block;
+  width: 280px;
+  padding: 10px;
+  text-align: center;
+  font-size: 0.2rem;
+  font-weight: bold;
+  background-color: #ea947c;
+  color: #333;
+  color: #fff;
+}
+
+.btn:hover {
+  opacity: 0.7;
+}
+
+.btn--s {
+  width: 160px;
+}
+
+/* status */
+.is-hidden {
+  display: none;
+}
+
+/* gallery */
+.gallery {
+  min-height: 90vh;
+}
+
+.gallery .inner {
+  width: 970px;
+  margin: 0 auto;
+}
+
+.gallery img {
+  float: left;
+  width: 220px;
+  height: 165px;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-fit: contain;
+  object-fit: contain;
+  margin-right: 30px;
+  margin-bottom: 30px;
+}
+
+.gallery img:nth-of-type(4n) {
+  margin-right: 0;
+}
+
+.gallery .search {
+  width: 500px;
+  margin: 50px auto;
+}
+
+.gallery .search .btn {
+  margin-left: 20px;
+}
+
+.gallery .search__status {
+  margin-top: 20px;
+  text-align: center;
+  display: none;
+}
+
+/* utility
+---------------------------------------- */
+.u-clx::after {
+  clear: both;
+  display: block;
+  content: '';
+}
+
+.u-section {
+  margin-bottom: 90px;
+}
+
+.u-section--side {
+  margin-bottom: 50px;
+}
+
+.txt-c {
+  text-align: center;
+}
+
+.txt-r {
+  text-align: right;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.f16 {
+  font-size: 0.16rem;
+}
+
+.f18 {
+  font-size: 0.18rem;
+}
+
+.f20 {
+  font-size: 0.20rem;
+}
+
+.f22 {
+  font-size: 0.22rem;
+}
+
+.f24 {
+  font-size: 0.24rem;
+}
+
+.mb5 {
+  margin-bottom: 5px;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+
+.mb15 {
+  margin-bottom: 15px;
+}
+
+.mb20 {
+  margin-bottom: 20px;
+}
+
+.mb30 {
+  margin-bottom: 30px;
+}
+
+.mb45 {
+  margin-bottom: 45px;
+}
+
+.mb50 {
+  margin-bottom: 50px;
+}
+
+.mb60 {
+  margin-bottom: 60px;
+}
+
+.mb70 {
+  margin-bottom: 70px;
+}
+
+.mb80 {
+  margin-bottom: 80px;
+}
+
+.mb90 {
+  margin-bottom: 90px;
+}
+
+.mt5 {
+  margin-top: 5px;
+}
+
+.mt10 {
+  margin-top: 10px;
+}
+
+.mt15 {
+  margin-top: 15px;
+}
+
+.mt20 {
+  margin-top: 20px;
+}
+
+.mt30 {
+  margin-top: 30px;
+}
+
+.mt50 {
+  margin-top: 50px;
+}
