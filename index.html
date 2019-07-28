@@ -27,16 +27,22 @@
       <section class="u-section gallery">
         <h2 class="ttl-lv2">Flicker Gallery</h2>
         <div class="search">
-          <input type="text" placeholder="キーワードを入力" id="js-searchbox">
-          <input class="btn btn--s" type="button" value="検索" id="js-searchbtn">
+          <input type="text" placeholder="キーワードを入力" id="js-searchbox" list="js-list">
+          <datalist id="js-list">
+            <option>test1</option>
+            <option>test2</option>
+            <option>test3</option>
+          </datalist>
+          <input class="btn btn--s" type="submit" value="検索" id="js-btnSearch">
           <p class="search__status" id="js-status"></p>
         </div>
         <div class="inner u-clx">
-          <div id="js-result">
+          <div id="js-result" class="reslut">
             <!-- ここに画像が表示されます -->
           </div>
         </div>
-        <p class="txt-c"><a class="btn mt20 is-hidden" id="js-morebtn">もっと見る</a></p>
+        <div id="js-pager" class="pager"></div>
+        <!-- <p class="txt-c"><a class="btn mt20 is-hidden" id="js-morebtn">もっと見る</a></p> -->
       </section>
     </main>
   </div>

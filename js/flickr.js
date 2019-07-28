@@ -5,8 +5,9 @@ $(function () {
   const data = {
     keyword: '',
     idxPage: 1,
-    maxPages: 1,
-    items: []
+    maxPage: 1,
+    items: [],
+    wordlist: []
   };
   const perPage = 20;
   const errorMsg = {
@@ -14,15 +15,23 @@ $(function () {
     noInput: 'キーワードを入力してください'
   }
 
-
   //イベント設定
-  //検索ボタンを押下したとき
-  $('#js-searchbtn').on('click', function () {
+  $('#js-btnSearch').on('click', function () {
     handleSearch();
   })
-  //もっとみるボタンを押下したとき
-  $('#js-morebtn').on('click', function () {
-    data.idxPage++;
+  $('#js-searchbox').on('keypress', function (e) {
+    //検索履歴からを表示
+
+    // エンターキーを押下
+    if (e.which === 13) {
+      handleSearch();
+    }
+  })
+  //ページャーボタンを押下したとき
+  $(document).on('click', '.js-btnPageChange', function (e) {
+    console.log('test');
+    data.idxPage = parseInt($(e.currentTarget).text(), 10);
+    // handlePageChange(this);
     fetchData();
   })
 
@@ -34,6 +43,12 @@ $(function () {
       renderInit();
       fetchData();
     }
+  }
+
+  function handlePageChange(o) {
+    console.log(this);
+    data.page = parseInt($(e.currentTarget).text(), 10);
+    fetchData();
   }
 
   //JSONデータの取得と結果の表示
@@ -54,6 +69,7 @@ $(function () {
       success: function (res) {
         if (res.stat == 'ok') {
           // success
+          data.maxPage = res.photos.pages;
           data.items = res.photos.photo;
           render();
         } else {
@@ -69,19 +85,8 @@ $(function () {
       renderError(errorMsg.noReusult);
     } else {
       renderGallery();
+      renderPager();
     }
-  }
-
-  //画面の初期化
-  function renderInit() {
-    $('#js-status').hide();
-    $('#js-morebtn').addClass('is-hidden');
-  }
-
-  //エラーメッセージ表示
-  function renderError(msg) {
-    $('#js-status').text(msg);
-    $('#js-status').show();
   }
 
   //JSONデータから写真のURLを取得し、ブラウザにサムネイルを表示
@@ -95,6 +100,37 @@ $(function () {
       $('#js-morebtn').removeClass('is-hidden');
     }
   }
+
+  //ページャーの描画
+  function renderPager() {
+    const range = 3
+    const minRange = data.idxPage > range ? data.idxPage - range : 1;
+    const maxRange = data.maxPage < data.idxPage + range ? data.maxPage : data.idxPage + range;
+    const pager = [];
+    for (let i = minRange; i <= maxRange; i++) {
+      if (i === data.idxPage) {
+        pager.push('<button aria-selected="true">' + i + '</button>')
+      } else {
+        pager.push('<button class="js-btnPageChange">' + i + '</button>')
+      }
+    };
+    console.log(pager.join(''));
+    $('#js-pager').html(pager.join(''));
+  }
+
+  //メッセージ、もっと見るボタンを非表示
+  function renderInit() {
+    $('#js-status').hide();
+    $('#js-morebtn').addClass('is-hidden');
+  }
+
+  //エラーメッセージ表示
+  function renderError(msg) {
+    $('#js-status').text(msg);
+    $('#js-status').show();
+    // $('#js-result').html('<p>' + msg + '</p>')
+  }
+
 })
 
 
