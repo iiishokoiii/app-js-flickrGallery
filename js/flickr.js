@@ -7,7 +7,8 @@ $(function () {
     idxPage: 1,
     maxPage: 1,
     items: [],
-    wordlist: []
+    historyLists: [],
+    mode: 'list'
   };
   const perPage = 20;
   const errorMsg = {
@@ -15,42 +16,47 @@ $(function () {
     noInput: 'キーワードを入力してください'
   }
 
-  //イベント設定
-  $('#js-btnSearch').on('click', function () {
-    handleSearch();
-  })
-  $('#js-searchbox').on('keypress', function (e) {
-    //検索履歴からを表示
+  if (data.mode === 'list') {
+    renderInitList();
+  } else {
+    renderInitDetail();
+  }
 
-    // エンターキーを押下
-    if (e.which === 13) {
+  //リスト画面の描写
+  function renderInitList() {
+    data.lists = getCookieDatalist('flickrList');
+    renderDatalist();
+    $('#viewList').show();
+    $('#viewDetail').hide();
+
+    //イベント設定
+    $('#js-btnSearch').on('click', function () {
       handleSearch();
-    }
-  })
-  //ページャーボタンを押下したとき
-  $(document).on('click', '.js-btnPageChange', function (e) {
-    console.log('test');
-    data.idxPage = parseInt($(e.currentTarget).text(), 10);
-    // handlePageChange(this);
-    fetchData();
-  })
+    })
+    $('#js-searchbox').on('keypress', function (e) {
+      if (e.which === 13) {      // エンターキーを押下
+        handleSearch();
+      }
+    })
+  }
+
+  //詳細画面の描画
+  function renderInitDetail() {
+    $('#viewList').hide();
+    $('#viewDetail').show();
+
+  }
 
   function handleSearch() {
     data.keyword = $('#js-searchbox').val();
     if (!data.keyword) {
       renderError(errorMsg.noInput);
     } else {
+      updateDatalist();
       renderInit();
       fetchData();
     }
   }
-
-  function handlePageChange(o) {
-    console.log(this);
-    data.page = parseInt($(e.currentTarget).text(), 10);
-    fetchData();
-  }
-
   //JSONデータの取得と結果の表示
   function fetchData() {
     $.ajax({
@@ -68,17 +74,67 @@ $(function () {
       jsonp: 'jsoncallback',
       success: function (res) {
         if (res.stat == 'ok') {
-          // success
           data.maxPage = res.photos.pages;
           data.items = res.photos.photo;
           render();
-        } else {
-          // fail
         }
       }
     })
   }
 
+  //検索ワードを、検索履歴の配列に追加、cookieのデータを更新
+  function updateDatalist() {
+    if (!data.historyLists.some(function (keyword) {
+      return keyword === data.keyword
+    })) {
+      data.historyLists.push(data.keyword);
+    }
+    renderDatalist();
+    updateCookieDatalist();
+  }
+
+  //検索履歴の配列から、datalistの要素を作成し描画
+  function renderDatalist() {
+    const list = data.historyLists.map(function (item) {
+      return '<option>' + item + '</option>'
+    })
+    $('#js-list').html(list.join(''))
+  }
+
+  //検索履歴の配列をJSONに変換し、cookieデータを更新
+  function updateCookieDatalist() {
+    const json = JSON.stringify(data.lists);
+    document.cookie = 'flickrList=' + json;
+  }
+
+  //cookieデータを取得し、配列に変換後、検索履歴の配列に格納
+  function getCookieDatalist(key) {
+    const str = document.cookie;
+    let cookieData = [];
+    if (str === '') {
+      return cookieData;
+    }
+    let cookies = str.split('; ');
+    console.log(cookies);
+    cookieData = cookies.map(function (cookie) {
+      return cookie.split('=')
+    }).filter(function (cookie) {
+      return cookie[0] === key
+    }).map(function (cookie) {
+      console.log(cookie[1])
+      return JSON.parse((cookie[1]))
+    })
+    console.log(cookieData);
+    // for (let i = 0; i < arr0.length; i++) {
+    //   let data = arr0[i].split('=');
+    //   if (data[0] === key) {
+    //     cookieData = JSON.parse(data[1]);
+    //   }
+    // }
+    return cookieData;
+  }
+
+  //検索結果の描画
   function render() {
     $('#js-status').addClass('is-hidden');
     if (data.items.length == 0) {
@@ -89,7 +145,7 @@ $(function () {
     }
   }
 
-  //JSONデータから写真のURLを取得し、ブラウザにサムネイルを表示
+  //JSONデータから写真のURLを取得し、画像一覧を描画
   function renderGallery() {
     {
       const list = data.items.map(function (item) {
@@ -97,11 +153,10 @@ $(function () {
         return '<img src="' + url + '" alt="' + item.title + '">';
       })
       $('#js-result').html(list.join(''))
-      $('#js-morebtn').removeClass('is-hidden');
     }
   }
 
-  //ページャーの描画
+  //ページ数をもとにページャーを描画
   function renderPager() {
     const range = 3
     const minRange = data.idxPage > range ? data.idxPage - range : 1;
@@ -114,21 +169,18 @@ $(function () {
         pager.push('<button class="js-btnPageChange">' + i + '</button>')
       }
     };
-    console.log(pager.join(''));
     $('#js-pager').html(pager.join(''));
   }
 
   //メッセージ、もっと見るボタンを非表示
   function renderInit() {
     $('#js-status').hide();
-    $('#js-morebtn').addClass('is-hidden');
   }
 
   //エラーメッセージ表示
   function renderError(msg) {
     $('#js-status').text(msg);
     $('#js-status').show();
-    // $('#js-result').html('<p>' + msg + '</p>')
   }
 
 })

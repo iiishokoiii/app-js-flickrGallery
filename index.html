@@ -24,14 +24,11 @@
   <div id="content">
     <main id="main">
       <!-- new item -->
-      <section class="u-section gallery">
+      <section id="viewList" class="u-section gallery">
         <h2 class="ttl-lv2">Flicker Gallery</h2>
         <div class="search">
           <input type="text" placeholder="キーワードを入力" id="js-searchbox" list="js-list">
           <datalist id="js-list">
-            <option>test1</option>
-            <option>test2</option>
-            <option>test3</option>
           </datalist>
           <input class="btn btn--s" type="submit" value="検索" id="js-btnSearch">
           <p class="search__status" id="js-status"></p>
@@ -43,6 +40,8 @@
         </div>
         <div id="js-pager" class="pager"></div>
         <!-- <p class="txt-c"><a class="btn mt20 is-hidden" id="js-morebtn">もっと見る</a></p> -->
+      </section>
+      <section id="viewList" class="u-section detail">
       </section>
     </main>
   </div>
