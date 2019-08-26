@@ -197,6 +197,7 @@ input[type="text"] {
   object-fit: contain;
   margin-right: 30px;
   margin-bottom: 30px;
+  cursor: pointer;
 }
 
 .gallery img:nth-of-type(4n) {
@@ -216,6 +217,11 @@ input[type="text"] {
   margin-top: 20px;
   text-align: center;
   display: none;
+}
+
+.detail img {
+  width: 800px;
+  cursor: pointer;
 }
 
 /* utility

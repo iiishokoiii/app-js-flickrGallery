@@ -16,20 +16,20 @@
 <body id="all">
   <header id="header">
     <div id="header-inr">
-      <h1 class="logo">test</h1>
+      <h1 class="logo">Flicker Gallery</h1>
     </div>
   </header>
 
   <div id="content">
     <main id="main">
       <!-- 検索ボックスとサムネイル表示 -->
-      <section id="js-gallery" class="u-section gallery">
-        <h2 class="ttl-lv2">Flicker Gallery</h2>
+      <section id="js-viewGallery" class="u-section gallery">
+        <h2 class="ttl-lv2">画像検索</h2>
         <div class="search">
-          <input type="text" placeholder="キーワードを入力" id="js-searchbox" list="js-list">
+          <input type="text" placeholder="キーワードを入力" id="js-inputSearch" list="js-list">
           <datalist id="js-list">
           </datalist>
-          <input class="btn btn--s" type="submit" value="検索" id="js-btnSearch">
+          <input class="btn btn--s" type="submit" value="検索" id="js-triggerSearch">
           <p class="search__status" id="js-status"></p>
         </div>
         <div id="js-result" class="result u-clx">
@@ -38,10 +38,11 @@
         <div id="js-pager" class="pager"></div>
       </section>
       <!-- 大きな画像を表示 -->
-      <section id="js-detail" class="u-section detail">
-        <div id="" class="gallery_inner u-clx">
-          ここに画像が表示されます
+      <section id="js-viewDetail" class="u-section detail">
+        <h2 class="ttl-lv2">画像詳細</h2>
+        <div class="txt-c mb30" id="js-detail">
         </div>
+        <p class="txt-c"><a class="btn" id="js-triggerBacktoGallery">戻る</a></p>
       </section>
     </main>
   </div>
