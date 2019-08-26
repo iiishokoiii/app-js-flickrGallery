@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>FlickrGallery</title>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <!-- css -->
+  <link href="./css/common.css" rel="stylesheet" type="text/css">
+  <!-- js -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/flickr.js"></script>
+
+</head>
+
+<body id="all">
+  <header id="header">
+    <div id="header-inr">
+      <h1 class="logo">Flicker Gallery</h1>
+    </div>
+  </header>
+
+  <div id="content">
+    <main id="main">
+      <!-- 検索ボックスとサムネイル表示 -->
+      <section id="js-viewGallery" class="u-section gallery">
+        <h2 class="ttl-lv2">画像検索</h2>
+        <div class="search">
+          <input type="text" placeholder="キーワードを入力" id="js-inputSearch" list="js-list">
+          <datalist id="js-list">
+          </datalist>
+          <input class="btn btn--s" type="submit" value="検索" id="js-triggerSearch">
+          <p class="search__status" id="js-status"></p>
+        </div>
+        <div id="js-result" class="result u-clx">
+          <!-- ここに画像サムネイルが表示されます -->
+        </div>
+        <div id="js-pager" class="pager"></div>
+      </section>
+      <!-- 大きな画像を表示 -->
+      <section id="js-viewDetail" class="u-section detail">
+        <h2 class="ttl-lv2">画像詳細</h2>
+        <div class="txt-c mb30" id="js-detail">
+        </div>
+        <p class="txt-c"><a class="btn" id="js-triggerBacktoGallery">戻る</a></p>
+      </section>
+    </main>
+  </div>
+
+  <footer id="footer" class="u-clx">
+    <div id="footer-inr">2019&copy;shoko Oda</div>
+    </div>
+  </footer>
+</body>
+
+</html>
