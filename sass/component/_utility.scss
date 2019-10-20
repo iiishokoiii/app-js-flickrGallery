@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+/* utility
+---------------------------------------- */
+.u-clx::after {
+  clear: both;
+  display: block;
+  content: '';
+}
+.u-section {
+  margin-bottom: 90px;
+  &--side {
+    margin-bottom: 50px;
+  }
+}
+
+.txt-c {text-align: center;}
+.txt-r {text-align: right;}
+.bold {font-weight: bold;}
+.f16 {font-size: 0.16rem}
+.f18 {font-size: 0.18rem}
+.f20 {font-size: 0.20rem}
+.f22 {font-size: 0.22rem}
+.f24 {font-size: 0.24rem}
+.mb5 {margin-bottom: 5px;}
+.mb10 {margin-bottom: 10px;}
+.mb15 {margin-bottom: 15px;}
+.mb20 {margin-bottom: 20px;}
+.mb30 {margin-bottom: 30px;}
+.mb45 {margin-bottom: 45px;}
+.mb50 {margin-bottom: 50px;}
+.mb60 {margin-bottom: 60px;}
+.mb70 {margin-bottom: 70px;}
+.mb80 {margin-bottom: 80px;}
+.mb90 {margin-bottom: 90px;}
+.mt5 {margin-top: 5px;}
+.mt10 {margin-top: 10px;}
+.mt15 {margin-top: 15px;}
+.mt20 {margin-top: 20px;}
+.mt30 {margin-top: 30px;}
+.mt50 {margin-top: 50px;}

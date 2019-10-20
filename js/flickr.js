@@ -161,6 +161,8 @@ $(function () {
     fetchData()
   }
 
+
+
   //検索ワード（data.keyword）を、検索履歴の配列(data.suggests)に追加
   function updateDatalist() {
     if (!data.suggests.some(function (item) {
